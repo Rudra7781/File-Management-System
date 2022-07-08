@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Allocate</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="{% url '' %}">FileMan</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url '' %}">Home</a>
+                </li>
+                <li class="nav-item text-dark dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </a>
+                    <div class="dropdown-menu" id="dropdown" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'addfile' %}">Upload File</a>
+                        <a class="dropdown-item" href="{% url 'yourfiles' %}">Your Files</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <!-- <a class="btn btn-info my-2 my-sm-0 x-2" href="{% url 'logout' %}" type="submit">Logout</a> -->
+            <div class="dropdown pmd-dropdown pmd-user-info ml-auto">
+                <a class="btn-user  media align-items-center" data-toggle="dropdown" data-sidebar="true"
+                    aria-expanded="false">
+                    <img src="{{u.img.url}}" class="mr-2 rounded-circle" width="40" height="40" alt="avatar">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success! </strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <div class="container ">
+        <div class="mt-5 ">
+            <div class="row text-center text-dark mb-4">
+                <div class="col-lg-7 mx-auto">
+                    <h1 class="display-4">Files You Uploaded</h1>
+                </div>
+            </div>
+
+
+            <!-- ---LIST START---- -->
+            {% for i in files %}
+            <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 mb-5 py-3 shadow-sm"
+                style="border-radius:20px; background-color:rgb(229, 229, 229);">
+                <!-- Basic Plan -->
+                <div class="row align-items-center">
+                    <h6 class="mx-3">{{forloop.counter}}</h6>
+                    <div class="col-12 col-md-1">
+                        <object data="{{i.file.url}}" type="application/pdf" width="100" height="100"> <a
+                                href="{{i.file.url}}" target="_blank">{{i.name}}.pdf</a></object>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <h6 class="pt-3 text-170 text-600 text-primary-d1 letter-spacing">
+                            {{i.name}}
+                        </h6>
+                        <p>{{i.upload_at}}</p>
+                    </div>
+
+                    <!-- <ul class="list-unstyled mb-0 col-12 col-sm-3 text-dark-l1 text-90 text-left my-4 my-md-0">
+                        <li>
+                            <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                            <span>
+                                <span class="text-110">Donec id elit.</span>
+                                Fusce dapibus...
+                            </span>
+                        </li>
+
+                        <li class="mt-25">
+                            <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                            <span class="text-110">
+                                Placerat duis
+                            </span>
+                        </li>
+
+                        <li class="mt-25">
+                            <i class="fa fa-times text-danger-m3 text-110 mr-25 mt-1"></i>
+                            <span class="text-110">
+                                Tortor mauris
+                            </span>
+                        </li>
+                    </ul> -->
+
+                    <div class="text-center col-md-2 m-1">
+                        <a href="{% url 'file' i.id %}" class="f-n-hover btn btn-info px-4 py-25 w-75 text-500">View</a>
+                    </div>
+                    <div class="text-center col-md-2 m-1">
+                        <a href="{% url 'detail' i.id %}"
+                            class="f-n-hover btn btn-info px-4 py-25 w-75 text-500">Details</a>
+                    </div>
+                    <div class="text-center col-md-2 m-1">
+                        <a href="{% url 'allocate' i.id %}"
+                            class="f-n-hover btn btn-success px-4 py-25 w-75 text-500">Allocate</a>
+                    </div>
+                    <div class="text-center col-md-2 m-1">
+                        <a href="{% url 'delete' i.id %}"
+                            class="f-n-hover btn btn-danger px-4 py-25 w-75 text-500">Delete</a>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+            <!-- ---end--- -->
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

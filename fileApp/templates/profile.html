@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Profile</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="{% url '' %}">FileMan</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url '' %}">Home</a>
+                </li>
+                <li class="nav-item text-dark dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </a>
+                    <div class="dropdown-menu" id="dropdown" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'addfile' %}">Upload File</a>
+                        <a class="dropdown-item" href="{% url 'yourfiles' %}">Your Files</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <!-- <a class="btn btn-info my-2 my-sm-0 x-2" href="{% url 'logout' %}" type="submit">Logout</a> -->
+            <div class="dropdown pmd-dropdown pmd-user-info ml-auto">
+                <a class="btn-user  media align-items-center" data-toggle="dropdown" data-sidebar="true"
+                    aria-expanded="false">
+                    <img src="{{u.img.url}}" class="mr-2 rounded-circle" width="40" height="40" alt="avatar">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- -----------------------------------------------------------------------------------------------------------------
+ -->
+
+
+    <section style="background-color: #eee; ">
+        <div class="container py-5">
+
+            <div class="row">
+
+                <!-- ---K -->
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="{{user.img.url}}" alt="avatar" class="rounded-circle img-fluid"
+                                style="width: 150px;">
+                            <h5 class="my-3">{{user.first_name}}</h5>
+                            <p class="text-muted mb-1">Full Stack Developer</p>
+                            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                            <!-- <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary">Follow</button>
+                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                  </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">D.O.B</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.dob}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.emp_email}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Department</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.dept}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.phone}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Date of joining</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.date_join}}</p>
+                                </div>
+                            </div>
+                            <!-- <hr> -->
+                            <!-- <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">(098) 765-4321</p>
+                    </div>
+                  </div> -->
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- --EDIT----- -->
+                <div class="container py-2 bg-white rounded">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row my-2 ">
+                            <!-- edit form column -->
+                            <div class="col-lg-4 order-lg-0 text-center">
+                                <h2 class="text-center font-weight-light">User Profile</h2>
+                                <img src="{{user.img.url}}" class="mx-auto img-fluid rounded-circle"
+                                    style="height:200px;" alt="avatar" />
+                                <h6 class="my-4">Upload a new photo</h6>
+                                <div class="input-group px-xl-4">
+                                    <div class="">
+                                        <input type="file" name="profile" value="{{user.img.url}}" required
+                                            class="{user.img.url}}" id="inputGroupFile02">
+                                        <label class="custom-file-label" for="inputGroupFile02"
+                                            aria-describedby="inputGroupFileAddon02">Choose file</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-8 order-lg-1 personal-info">
+                                <form role="form">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="f_name" type="text"
+                                                value="{{user.first_name}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="l_name" type="text"
+                                                value="{{user.last_name}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Phone</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="phone" type="text"
+                                                value="{{user.phone}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="email" type="email"
+                                                value="{{user.emp_email}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                        <div class="col-lg-9">
+                                            <textarea class="form-control" name="add" name="" id=""
+                                                rows="3">Addrress</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-labe"
+                                            for="example">D.O.B</label>
+                                        <div id="date-picker-example"
+                                            class="col-lg-9 md-form md-outline input-with-post-icon datepicker"
+                                            inline="true">
+                                            <input placeholder="Select date" required value="{{user.dob}}" name="dob"
+                                                type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="pass" type="password" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Confirm
+                                            password</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" required name="repass" type="password"
+                                                value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-9 ml-auto text-right">
+                                            <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
